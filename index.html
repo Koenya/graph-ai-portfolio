@@ -1,725 +1,972 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generative AI Portfolio | Bilberry Style</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --header-bg: #1a1f2e;
-            --header-text: #ffffff;
-            --header-subtext: #9ca3af;
-            --bg-color: #f9fafb;
-            --card-bg: #ffffff;
-            --border-color: #e5e7eb;
-            --text-primary: #1f2937;
-            --text-secondary: #4b5563;
-            --text-muted: #6b7280;
-            --accent-blue: #2563eb;
-            --accent-teal: #059669;
-            --accent-purple: #7c3aed;
-            --timeline-line: #d1d5db;
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --radius: 10px;
-            --font-serif: 'Merriweather', serif;
-            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            --max-width: 900px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koenya | Generative AI Portfolio</title>
+  <meta name="description" content="Koenya portfolio and weekly submissions for Generative AI for Work & Research." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-alt: #eef2ff;
+      --panel: rgba(255,255,255,0.9);
+      --panel-strong: #ffffff;
+      --line: rgba(148,163,184,0.3);
+      --text: #1f2937;
+      --muted: #52607a;
+      --soft: #6b7280;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --purple: #7c3aed;
+      --orange: #f59e0b;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.06);
+      --radius: 18px;
+      --header-glow: rgba(37, 99, 235, 0.18);
+      --success: #16a34a;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    body.dark {
+      --bg: #0b1220;
+      --bg-alt: #111827;
+      --panel: rgba(17,24,39,0.84);
+      --panel-strong: #111827;
+      --line: rgba(148,163,184,0.18);
+      --text: #e5edf7;
+      --muted: #bfd0ee;
+      --soft: #a7b9d8;
+      --blue: #60a5fa;
+      --teal: #5eead4;
+      --purple: #a78bfa;
+      --orange: #fbbf24;
+      --shadow: 0 18px 40px rgba(2,6,23,0.45);
+      --shadow-soft: 0 12px 28px rgba(2,6,23,0.28);
+      --header-glow: rgba(96,165,250,0.14);
+      --success: #4ade80;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(124,58,237,0.1), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-        body {
-            font-family: var(--font-main);
-            background: linear-gradient(135deg, var(--bg-color) 0%, #f3f4f6 100%);
-            color: var(--text-primary);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
 
-        /* Header Styles */
-        .bilberry-header {
-            background: linear-gradient(135deg, var(--header-bg) 0%, #111827 100%);
-            color: var(--header-text);
-            padding: 3rem 1.5rem;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-        }
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
 
-        .bilberry-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 18, 32, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
 
-        .header-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
+    body.dark .site-header {
+      background: rgba(10, 15, 25, 0.8);
+    }
 
-        .header-profile {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex: 1;
-        }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 72px;
+    }
 
-        .avatar-circle {
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #ffffff;
-            font-weight: 700;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
-            flex-shrink: 0;
-            font-family: var(--font-serif);
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: white;
+      font-size: 0.8rem;
+    }
 
-        .header-meta h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.015em;
-            line-height: 1.3;
-            font-family: var(--font-serif);
-            margin-bottom: 0.4rem;
-        }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
 
-        .header-meta p {
-            font-size: 1rem;
-            color: var(--header-subtext);
-            font-weight: 500;
-        }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-        .header-meta p::before {
-            content: '✦ ';
-            color: var(--accent-teal);
-            margin-right: 0.5rem;
-        }
+    .nav a {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+    }
 
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
+    .nav a:hover { color: white; }
 
-        .nav-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
+    .theme-toggle {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
 
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .header-meta h1 {
-                font-size: 1.5rem;
-            }
-        }
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.1);
+    }
 
-        /* Main Container */
-        .main-container {
-            max-width: var(--max-width);
-            margin: 3rem auto 4rem;
-            padding: 0 1.5rem;
-        }
+    .hero {
+      padding: 72px 0 36px;
+    }
 
-        /* Timeline Styles */
-        .timeline {
-            position: relative;
-            padding-left: 3.5rem;
-        }
+    .hero-shell {
+      background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(124,58,237,0.1));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 3vw, 38px);
+      position: relative;
+      overflow: hidden;
+    }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 1.2rem;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-teal) 50%, var(--accent-purple) 100%);
-            border-radius: 999px;
-        }
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -100px -80px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(96,165,250,0.18), rgba(96,165,250,0));
+      border-radius: 50%;
+      pointer-events: none;
+    }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: slideIn 0.6s ease-out forwards;
-        }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
 
-        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
-        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
-        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
-        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.09);
+      color: var(--blue);
+      border: 1px solid rgba(37,99,235,0.15);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(15,118,110,0.85);
+    }
 
-        .timeline-node {
-            position: absolute;
-            left: -3rem;
-            top: 1.5rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--card-bg);
-            border: 3px solid var(--accent-blue);
-            color: var(--accent-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            z-index: 2;
-            box-shadow: 0 0 0 8px var(--bg-color), var(--shadow-md);
-            transition: var(--transition);
-        }
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      letter-spacing: -0.04em;
+      margin: 0;
+      line-height: 0.96;
+      color: var(--text);
+    }
 
-        .timeline-item:hover .timeline-node {
-            transform: scale(1.15);
-            box-shadow: 0 0 0 8px var(--bg-color), 0 8px 20px rgba(37, 99, 235, 0.4);
-        }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      margin-top: 18px;
+      margin-bottom: 18px;
+      max-width: 720px;
+    }
 
-        /* Card Styles */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            overflow: hidden;
-            position: relative;
-        }
+    .highlight {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-teal));
-        }
+    .lead {
+      max-width: 640px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin: 0;
+    }
 
-        .card:hover {
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent-blue);
-            transform: translateY(-4px);
-        }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+    }
 
-        .card-header {
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1rem;
-        }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .card-tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 0.5rem;
-            display: inline-block;
-            padding: 0.35rem 0.8rem;
-            background: rgba(37, 99, 235, 0.08);
-            border-radius: 999px;
-        }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary {
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      border-color: transparent;
+      box-shadow: 0 16px 30px rgba(104, 85, 224, 0.22);
+    }
+    .button.secondary {
+      background: rgba(255,255,255,0.4);
+      color: var(--text);
+    }
 
-        .card-title {
-            font-size: 1.65rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-family: var(--font-serif);
-            letter-spacing: -0.02em;
-        }
+    body.dark .button.secondary {
+      background: rgba(17,24,39,0.55);
+    }
 
-        .card-body {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
+    .profile-card {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+    }
 
-        .card-body p {
-            margin: 0 0 1rem 0;
-        }
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
 
-        .card-body p:last-child {
-            margin-bottom: 0;
-        }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--purple), var(--teal));
+      box-shadow: 0 20px 30px rgba(37,99,235,0.25);
+    }
 
-        .card-body strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
+    .profile-meta strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 2px;
+    }
 
-        /* About Text */
-        .about-text {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
-            padding: 1.75rem 2rem;
-            border-left: 5px solid var(--accent-teal);
-            border-radius: 0 var(--radius) var(--radius) 0;
-            margin-top: 1rem;
-            line-height: 1.8;
-        }
+    .profile-meta span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-        /* Modules List */
-        .modules-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
 
-        .module-item {
-            padding: 1.5rem;
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius);
-            background: linear-gradient(135deg, #fafbfc 0%, #f3f4f6 100%);
-            transition: var(--transition);
-            cursor: pointer;
-        }
+    .metric {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px 16px;
+      min-height: 108px;
+    }
 
-        .module-item:hover {
-            border-color: var(--accent-blue);
-            box-shadow: var(--shadow-md);
-            transform: translateX(4px);
-        }
+    .metric strong {
+      display: block;
+      font-size: 1.95rem;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+    }
 
-        .module-item-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-        }
+    .metric span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-        .module-badge {
-            font-size: 0.65rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-            color: #ffffff;
-            padding: 0.4rem 0.75rem;
-            border-radius: 999px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            flex-shrink: 0;
-        }
+    .content-wrap {
+      padding: 28px 0 64px;
+    }
 
-        .module-item-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-family: var(--font-serif);
-        }
+    .section {
+      margin-bottom: 34px;
+    }
 
-        .module-item-desc {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
+    .section-head {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
 
-        /* Submissions Grid */
-        .submissions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
+    .section-index {
+      font-size: 0.8rem;
+      color: var(--blue);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
 
-        .sub-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 160px;
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
+    .section-head h2 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+    }
 
-        .sub-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition);
-        }
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+    }
 
-        .sub-card:hover {
-            border-color: var(--accent-blue);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-6px);
-        }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: 26px;
+    }
 
-        .sub-card:hover::before {
-            transform: scaleX(1);
-        }
+    .panel p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
 
-        .sub-week {
-            font-size: 0.7rem;
-            font-weight: 800;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.5rem;
-        }
+    .panel p:last-child { margin-bottom: 0; }
 
-        .sub-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-family: var(--font-serif);
-            margin: 0.25rem 0 0.75rem;
-            line-height: 1.4;
-        }
+    .bio-quote {
+      padding: 16px 18px;
+      border-left: 4px solid var(--teal);
+      background: linear-gradient(90deg, rgba(15,118,110,0.08), transparent);
+      border-radius: 12px;
+      color: var(--text);
+      font-weight: 600;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      line-height: 1.2;
+      margin-top: 14px;
+    }
 
-        .sub-status {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-style: italic;
-        }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 16px;
+    }
 
-        .sub-status.completed {
-            color: var(--accent-teal);
-            font-style: normal;
-            font-weight: 600;
-        }
+    .meta-item {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
 
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--header-bg) 0%, #111827 100%);
-            color: var(--header-subtext);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 4rem;
-        }
+    .meta-label {
+      display: block;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
 
-        footer p {
-            margin-bottom: 0.75rem;
-        }
+    .meta-item strong {
+      font-size: 1.05rem;
+    }
 
-        .citation-box {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            font-size: 0.85rem;
-            color: #9ca3af;
-        }
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
 
-        .citation-box a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
+    .skill-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: 22px;
+    }
 
-        .citation-box a:hover {
-            text-decoration: underline;
-        }
+    .skill-box h3 {
+      font-size: clamp(1.6rem, 2vw, 2rem);
+      margin-bottom: 12px;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-container {
-                margin: 2rem auto 3rem;
-            }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
-            .timeline {
-                padding-left: 0;
-            }
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border: 1px solid rgba(37,99,235,0.18);
+      background: rgba(37,99,235,0.06);
+      color: var(--text);
+    }
 
-            .timeline::before,
-            .timeline-node {
-                display: none;
-            }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 20px;
+    }
 
-            .card {
-                padding: 1.75rem;
-            }
+    .project-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
 
-            .submissions-grid {
-                grid-template-columns: 1fr;
-            }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(37,99,235,0.28);
+      box-shadow: var(--shadow);
+    }
 
-            .card-title {
-                font-size: 1.4rem;
-            }
-        }
+    .project-visual {
+      height: 176px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(124,58,237,0.09), rgba(15,118,110,0.08));
+      color: var(--blue);
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      font-family: 'Cormorant Garamond', serif;
+    }
 
-        /* Utility Classes */
-        .text-accent {
-            color: var(--accent-blue);
-        }
+    .project-body {
+      padding: 20px 20px 22px;
+    }
 
-        .text-teal {
-            color: var(--accent-teal);
-        }
-    </style>
+    .project-body h3 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-tags span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(148,163,184,0.08);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .submissions {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 8px 0 0;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .submission-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .submission-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--line);
+      transition: background 0.2s ease;
+    }
+
+    .submission-item:last-child { border-bottom: none; }
+    .submission-item:hover { background: rgba(148,163,184,0.04); }
+
+    .week-pill {
+      display: inline-grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 12px 24px rgba(37,99,235,0.2);
+      font-size: 0.88rem;
+    }
+
+    .submission-item strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .submission-item span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(22,163,74,0.09);
+      border: 1px solid rgba(22,163,74,0.2);
+      color: var(--success);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      display: block;
+    }
+
+    .contact-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 26px 28px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-box h3 {
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      margin-bottom: 8px;
+    }
+
+    .contact-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .footer {
+      padding: 34px 0 60px;
+      color: var(--soft);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .card-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .submission-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .skill-grid,
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" aria-label="Koenya brand">
+        <div class="brand-mark">K</div>
+        Koenya
+      </div>
 
-    <header class="bilberry-header">
-        <div class="header-container">
-            <div class="header-profile">
-                <div class="avatar-circle">✦</div>
-                <div class="header-meta">
-                    <h1>Generative AI Portfolio</h1>
-                    <p>Work & Research Showcase</p>
-                </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Work</a>
+        <a href="#submissions">Submissions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">☀️</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Generative AI</div>
+            <h1>Building <span class="highlight">creative AI</span> for work and research.</h1>
+            <p class="lead">
+              I explore how AI can support better decision-making, human creativity, and meaningful digital experiences.
+              This portfolio captures my work, learning journey, and weekly submissions across the course.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#work">View work</a>
+              <a class="button secondary" href="#contact">Contact</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle Menu" title="Menu">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
+          </div>
+
+          <aside class="profile-card" aria-label="Profile summary">
+            <div class="profile-top">
+              <div class="profile-avatar">K</div>
+              <div class="profile-meta">
+                <strong>Koenya</strong>
+                <span>AI Research & Creative Technologist</span>
+              </div>
+            </div>
+
+            <div class="metric-grid">
+              <div class="metric">
+                <strong>7</strong>
+                <span>Course modules</span>
+              </div>
+              <div class="metric">
+                <strong>20+</strong>
+                <span>Ideas explored</span>
+              </div>
+              <div class="metric">
+                <strong>AI</strong>
+                <span>Research focus</span>
+              </div>
+              <div class="metric">
+                <strong>UX</strong>
+                <span>Creative systems</span>
+              </div>
+            </div>
+          </aside>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <main class="main-container">
-        <div class="timeline">
-
-            <!-- About Me Card -->
-            <div class="timeline-item">
-                <div class="timeline-node">👤</div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-tag">Profile</span>
-                        <h2 class="card-title">About Me</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="about-text">
-                            I work with data to support accurate reporting, planning and decision-making. Passionate about AI, research workflows, and building tools that empower creative problem-solving.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- About Course Card -->
-            <div class="timeline-item">
-                <div class="timeline-node">🎓</div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-tag">Course</span>
-                        <h2 class="card-title">About the Program</h2>
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Generative AI for Work & Research</strong> is an intensive 8-week live cohort course focused on <span class="text-teal">No-Code AI tools</span> for responsible automation and research enhancement.</p>
-                        <p>Offered by <strong>The GRAPH Courses</strong> at the University of Geneva, Switzerland — combining academic rigor with practical, industry-relevant application of cutting-edge AI technologies.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modules List Card -->
-            <div class="timeline-item">
-                <div class="timeline-node">📚</div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-tag">Curriculum</span>
-                        <h2 class="card-title">Course Modules</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="modules-list">
-
-                            <div class="module-item">
-                                <div class="module-item-header">
-                                    <span class="module-badge">W1</span>
-                                    <span class="module-item-title">Documents, Presentations & Websites</span>
-                                </div>
-                                <p class="module-item-desc">How LLMs are trained • Prompting principles • Generating DOCX/PPTX/HTML • Building simple websites • AI detection tools</p>
-                            </div>
-
-                            <div class="module-item">
-                                <div class="module-item-header">
-                                    <span class="module-badge">W2</span>
-                                    <span class="module-item-title">AI-Automated Data Analysis</span>
-                                </div>
-                                <p class="module-item-desc">Analyzing quantitative data responsibly • Coding assistants • Data agents • Verification strategies for statistical outputs</p>
-                            </div>
-
-                            <div class="module-item">
-                                <div class="module-item-header">
-                                    <span class="module-badge">W3</span>
-                                    <span class="module-item-title">GenAI for Text Processing & Research</span>
-                                </div>
-                                <p class="module-item-desc">Processing hundreds of documents • Structured data extraction • AI literature review tools • Qualitative analysis at scale</p>
-                            </div>
-
-                            <div class="module-item">
-                                <div class="module-item-header">
-                                    <span class="module-badge">W4</span>
-                                    <span class="module-item-title">Custom GPTs and Chatbots</span>
-                                </div>
-                                <p class="module-item-desc">Building custom knowledge base chatbots • Context engineering • RAG systems • Custom GPTs • Safe chatbot deployment</p>
-                            </div>
-
-                            <div class="module-item">
-                                <div class="module-item-header">
-                                    <span class="module-badge">W5</span>
-                                    <span class="module-item-title">AI Tools for Workflow Automation</span>
-                                </div>
-                                <p class="module-item-desc">LLM-powered automations • Action & frequency triggers • Research digests • Keeping humans in the loop • Browser agents</p>
-                            </div>
-
-                            <div class="module-item">
-                                <div class="module-item-header">
-                                    <span class="module-badge">W6</span>
-                                    <span class="module-item-title">GenAI for Communication & Outreach</span>
-                                </div>
-                                <p class="module-item-desc">Image generation models • HTML/SVG infographics • Visual research abstracts • AI video translation & dubbing</p>
-                            </div>
-
-                            <div class="module-item">
-                                <div class="module-item-header">
-                                    <span class="module-badge">W7</span>
-                                    <span class="module-item-title">Capstone Project & Showcase</span>
-                                </div>
-                                <p class="module-item-desc">Collaborative AI solution development • Peer feedback • Live project demos • Demonstrating responsible AI practice</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Submissions Card -->
-            <div class="timeline-item">
-                <div class="timeline-node">📝</div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-tag">Submissions</span>
-                        <h2 class="card-title">Weekly Submissions</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="submissions-grid">
-                            <div class="sub-card">
-                                <div>
-                                    <span class="sub-week">Week 1</span>
-                                    <h3 class="sub-title">Websites & Documents</h3>
-                                </div>
-                                <span class="sub-status">✦ Coming soon</span>
-                            </div>
-                            <div class="sub-card">
-                                <div>
-                                    <span class="sub-week">Week 2</span>
-                                    <h3 class="sub-title">Data Analysis</h3>
-                                </div>
-                                <span class="sub-status">✦ Coming soon</span>
-                            </div>
-                            <div class="sub-card">
-                                <div>
-                                    <span class="sub-week">Week 3</span>
-                                    <h3 class="sub-title">Text Processing</h3>
-                                </div>
-                                <span class="sub-status">✦ Coming soon</span>
-                            </div>
-                            <div class="sub-card">
-                                <div>
-                                    <span class="sub-week">Week 4</span>
-                                    <h3 class="sub-title">Custom GPTs</h3>
-                                </div>
-                                <span class="sub-status">✦ Coming soon</span>
-                            </div>
-                            <div class="sub-card">
-                                <div>
-                                    <span class="sub-week">Week 5</span>
-                                    <h3 class="sub-title">Automation</h3>
-                                </div>
-                                <span class="sub-status">✦ Coming soon</span>
-                            </div>
-                            <div class="sub-card">
-                                <div>
-                                    <span class="sub-week">Week 6</span>
-                                    <h3 class="sub-title">Communication</h3>
-                                </div>
-                                <span class="sub-status">✦ Coming soon</span>
-                            </div>
-                            <div class="sub-card">
-                                <div>
-                                    <span class="sub-week">Week 7</span>
-                                    <h3 class="sub-title">Capstone</h3>
-                                </div>
-                                <span class="sub-status">✦ Coming soon</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <div class="container content-wrap">
+      <section class="section" id="about">
+        <div class="section-head">
+          <div class="section-index">01</div>
+          <h2>About</h2>
         </div>
-    </main>
 
-    <footer>
-        <p><strong>Generative AI for Work & Research</strong></p>
-        <p>The GRAPH Courses • University of Geneva • 2026</p>
-        <div class="citation-box">
-            Design inspired by <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank" rel="noopener">Bilberry Hugo Theme</a> by Lednerb • Built for GitHub Pages
+        <div class="card-grid">
+          <div class="panel">
+            <p>
+              I work at the intersection of AI, design, and research, with a focus on making advanced tools feel useful,
+              understandable, and ethically grounded.
+            </p>
+            <p>
+              My interests sit in data-informed creativity, responsible automation, and digital storytelling that helps complex ideas become clearer and more actionable.
+            </p>
+            <div class="bio-quote">“I build systems that help people think, create, and decide better.”</div>
+          </div>
+
+          <div class="panel">
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">Location</span>
+                <strong>Remote</strong>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Focus</span>
+                <strong>AI & Design</strong>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Specialty</span>
+                <strong>Creative Systems</strong>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Approach</span>
+                <strong>Research-first</strong>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </section>
 
+      <section class="section" id="skills">
+        <div class="section-head">
+          <div class="section-index">02</div>
+          <h2>Skills</h2>
+        </div>
+
+        <div class="skill-grid">
+          <div class="skill-box">
+            <h3>AI & Data</h3>
+            <div class="tag-row">
+              <span class="tag">Generative AI</span>
+              <span class="tag">Prompt Design</span>
+              <span class="tag">Research</span>
+              <span class="tag">Data Storytelling</span>
+            </div>
+          </div>
+
+          <div class="skill-box">
+            <h3>Design</h3>
+            <div class="tag-row">
+              <span class="tag">UX</span>
+              <span class="tag">UI</span>
+              <span class="tag">Visual Systems</span>
+              <span class="tag">Brand</span>
+            </div>
+          </div>
+
+          <div class="skill-box">
+            <h3>Build</h3>
+            <div class="tag-row">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+          </div>
+
+          <div class="skill-box">
+            <h3>Workflow</h3>
+            <div class="tag-row">
+              <span class="tag">Prototyping</span>
+              <span class="tag">Testing</span>
+              <span class="tag">Iteration</span>
+              <span class="tag">Product Thinking</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="work">
+        <div class="section-head">
+          <div class="section-index">03</div>
+          <h2>Selected work</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-visual">AI</div>
+            <div class="project-body">
+              <h3>Creative AI</h3>
+              <p>Exploring generative workflows for ideation, storytelling, and concept development.</p>
+              <div class="project-tags">
+                <span>GenAI</span>
+                <span>Concept</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">UX</div>
+            <div class="project-body">
+              <h3>Research-led UX</h3>
+              <p>Designing interfaces shaped by user behavior, usability research, and accessibility.</p>
+              <div class="project-tags">
+                <span>UX</span>
+                <span>Research</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">WEB</div>
+            <div class="project-body">
+              <h3>Portfolio Design</h3>
+              <p>Building elegant digital experiences that communicate clarity, personality, and trust.</p>
+              <div class="project-tags">
+                <span>Web</span>
+                <span>Brand</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="submissions">
+        <div class="section-head">
+          <div class="section-index">04</div>
+          <h2>Submissions</h2>
+        </div>
+
+        <div class="submissions">
+          <ul class="submission-list">
+            <li class="submission-item">
+              <div class="week-pill">W1</div>
+              <div>
+                <strong>Websites & Documents</strong>
+                <span>Prompting, content generation, and digital outputs.</span>
+              </div>
+              <div class="status">Ready</div>
+            </li>
+            <li class="submission-item">
+              <div class="week-pill">W2</div>
+              <div>
+                <strong>Data Analysis</strong>
+                <span>Responsible data interpretation and AI-assisted insights.</span>
+              </div>
+              <div class="status">Ready</div>
+            </li>
+            <li class="submission-item">
+              <div class="week-pill">W3</div>
+              <div>
+                <strong>Text Processing</strong>
+                <span>Research synthesis using AI-driven workflows.</span>
+              </div>
+              <div class="status">Ready</div>
+            </li>
+            <li class="submission-item">
+              <div class="week-pill">W4</div>
+              <div>
+                <strong>Custom GPTs</strong>
+                <span>Knowledge-base assistants and chatbots.</span>
+              </div>
+              <div class="status">Ready</div>
+            </li>
+            <li class="submission-item">
+              <div class="week-pill">W5</div>
+              <div>
+                <strong>Automation</strong>
+                <span>Workflow design, triggers, and AI-driven efficiency.</span>
+              </div>
+              <div class="status">Ready</div>
+            </li>
+            <li class="submission-item">
+              <div class="week-pill">W6</div>
+              <div>
+                <strong>Communication</strong>
+                <span>Visual storytelling, outreach, and AI-enhanced messaging.</span>
+              </div>
+              <div class="status">Ready</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-head">
+          <div class="section-index">05</div>
+          <h2>Contact</h2>
+        </div>
+
+        <div class="contact-box">
+          <div>
+            <h3>Let’s build something meaningful.</h3>
+            <p>Open to AI product design, creative research, and thoughtful digital experiences.</p>
+          </div>
+          <a class="button primary" href="mailto:hello@example.com">hello@example.com</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Koenya • Generative AI Portfolio</div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      toggle.textContent = '🌙';
+    }
+
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      toggle.textContent = isDark ? '🌙' : '☀️';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
 </body>
 </html>
