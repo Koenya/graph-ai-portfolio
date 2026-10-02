@@ -1,771 +1,527 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ledi Leticia | Product Designer</title>
-    <meta
-      name="description"
-      content="Product designer focused on AI, UX strategy, and research-driven digital experiences for startups."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledi Leticia | Generative AI Portfolio</title>
     <style>
-      :root {
-        --bg: #f5f7fb;
-        --bg-alt: #eef2ff;
-        --panel: rgba(255, 255, 255, 0.9);
-        --panel-strong: #ffffff;
-        --line: rgba(148, 163, 184, 0.25);
-        --text: #101828;
-        --muted: #475467;
-        --soft: #667085;
-        --blue: #2449d7;
-        --purple: #6f5ef7;
-        --teal: #0f766e;
-        --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-        --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.06);
-        --radius: 22px;
-      }
-
-      body.dark {
-        --bg: #0b1220;
-        --bg-alt: #111827;
-        --panel: rgba(17, 24, 39, 0.88);
-        --panel-strong: #111827;
-        --line: rgba(148, 163, 184, 0.18);
-        --text: #edf2ff;
-        --muted: #bfd0ee;
-        --soft: #a7b9d8;
-        --blue: #7aa2ff;
-        --purple: #a38bff;
-        --teal: #5eead4;
-        --shadow: 0 18px 40px rgba(2, 6, 23, 0.42);
-        --shadow-soft: 0 12px 28px rgba(2, 6, 23, 0.28);
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(36, 73, 215, 0.09), transparent 26%),
-          radial-gradient(circle at top right, rgba(111, 94, 247, 0.08), transparent 22%),
-          linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
-        color: var(--text);
-        line-height: 1.7;
-      }
-
-      a { color: inherit; text-decoration: none; }
-      img { max-width: 100%; display: block; }
-      button { font: inherit; }
-
-      .container {
-        width: min(1120px, calc(100% - 40px));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        backdrop-filter: blur(14px);
-        background: rgba(11, 18, 32, 0.72);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      body.dark .site-header {
-        background: rgba(10, 15, 25, 0.8);
-      }
-
-      .header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 72px;
-        gap: 24px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 0.8rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: white;
-      }
-
-      .brand-mark {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--blue), var(--purple));
-        font-size: 0.82rem;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      .nav a {
-        color: rgba(255,255,255,0.8);
-        font-size: 0.92rem;
-      }
-
-      .nav a:hover { color: white; }
-
-      .theme-toggle {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        border: 1px solid rgba(255,255,255,0.12);
-        background: rgba(255,255,255,0.06);
-        color: white;
-        cursor: pointer;
-      }
-
-      .hero {
-        padding: 70px 0 40px;
-      }
-
-      .hero-panel {
-        display: grid;
-        grid-template-columns: 1.4fr 0.8fr;
-        gap: 28px;
-        align-items: center;
-        background: linear-gradient(135deg, rgba(36, 73, 215, 0.08), rgba(111, 94, 247, 0.07));
-        border: 1px solid var(--line);
-        border-radius: 30px;
-        padding: clamp(26px, 4vw, 42px);
-        box-shadow: var(--shadow);
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(36, 73, 215, 0.08);
-        border: 1px solid rgba(36, 73, 215, 0.12);
-        color: var(--blue);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .eyebrow::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--teal);
-        box-shadow: 0 0 14px rgba(15,118,110,0.9);
-      }
-
-      h1, h2, h3 {
-        font-family: 'Cormorant Garamond', Georgia, serif;
-        letter-spacing: -0.04em;
-        line-height: 0.96;
-        margin: 0;
-      }
-
-      .hero h1 {
-        font-size: clamp(3.2rem, 7vw, 5.2rem);
-        margin-top: 18px;
-        margin-bottom: 18px;
-      }
-
-      .highlight {
-        background: linear-gradient(135deg, var(--blue), var(--purple));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .lead {
-        margin: 0;
-        max-width: 620px;
-        color: var(--muted);
-        font-size: 1.08rem;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-top: 28px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 46px;
-        padding: 0 22px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        font-weight: 700;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .button:hover { transform: translateY(-2px); }
-
-      .button.primary {
-        background: linear-gradient(135deg, var(--blue), var(--purple));
-        color: white;
-        border-color: transparent;
-        box-shadow: 0 14px 30px rgba(111, 94, 247, 0.22);
-      }
-
-      .button.secondary {
-        background: rgba(255,255,255,0.5);
-        color: var(--text);
-      }
-
-      body.dark .button.secondary {
-        background: rgba(17,24,39,0.65);
-      }
-
-      .profile-card {
-        background: rgba(255,255,255,0.12);
-        border: 1px solid var(--line);
-        border-radius: 26px;
-        padding: 24px;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .profile-top {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 18px;
-      }
-
-      .profile-avatar {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--blue), var(--purple), var(--teal));
-        color: white;
-        font-weight: 800;
-        font-size: 1.5rem;
-      }
-
-      .profile-meta strong {
-        display: block;
-        font-size: 1.2rem;
-      }
-
-      .profile-meta span {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      .metric-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .metric {
-        background: rgba(255,255,255,0.06);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 18px 16px;
-        min-height: 108px;
-      }
-
-      .metric strong {
-        display: block;
-        font-size: 2rem;
-        font-family: 'Cormorant Garamond', serif;
-        margin-bottom: 4px;
-      }
-
-      .metric span {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      .content-wrap {
-        padding: 24px 0 70px;
-      }
-
-      .section {
-        margin-bottom: 28px;
-      }
-
-      .section-head {
-        display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 20px;
-        align-items: end;
-        margin-bottom: 18px;
-      }
-
-      .section-index {
-        color: var(--blue);
-        font-size: 0.8rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .section-head h2 {
-        font-size: clamp(2.3rem, 4vw, 3rem);
-      }
-
-      .two-col {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 22px;
-      }
-
-      .panel {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-soft);
-        padding: 26px;
-      }
-
-      .panel p {
-        margin: 0 0 14px;
-        color: var(--muted);
-        font-size: 1.04rem;
-      }
-
-      .panel p:last-child { margin-bottom: 0; }
-
-      .quote {
-        padding: 16px 18px;
-        border-left: 4px solid var(--teal);
-        background: linear-gradient(90deg, rgba(15,118,110,0.08), transparent);
-        border-radius: 12px;
-        color: var(--text);
-        font-size: clamp(1.5rem, 2vw, 2rem);
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 600;
-        line-height: 1.2;
-      }
-
-      .meta-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .meta-item {
-        padding-top: 18px;
-        border-top: 1px solid var(--line);
-      }
-
-      .meta-label {
-        display: block;
-        color: var(--soft);
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 6px;
-      }
-
-      .meta-item strong {
-        font-size: 1.08rem;
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .skill-box {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-soft);
-        padding: 22px;
-      }
-
-      .skill-box h3 {
-        font-size: clamp(1.8rem, 2vw, 2.2rem);
-        margin-bottom: 12px;
-      }
-
-      .tag-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .tag {
-        padding: 7px 10px;
-        border-radius: 999px;
-        background: rgba(36, 73, 215, 0.06);
-        border: 1px solid rgba(36, 73, 215, 0.18);
-        color: var(--text);
-        font-size: 0.74rem;
-        font-weight: 700;
-      }
-
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 20px;
-      }
-
-      .project-card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        overflow: hidden;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .project-visual {
-        height: 180px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, rgba(36, 73, 215, 0.12), rgba(111, 94, 247, 0.1), rgba(15,118,110,0.07));
-        color: var(--blue);
-        font-size: 3rem;
-        font-weight: 800;
-        letter-spacing: -0.08em;
-        font-family: 'Cormorant Garamond', serif;
-      }
-
-      .project-body {
-        padding: 20px 20px 22px;
-      }
-
-      .project-body h3 {
-        font-size: 2rem;
-        margin-bottom: 8px;
-      }
-
-      .project-body p {
-        color: var(--muted);
-        margin: 0 0 14px;
-      }
-
-      .project-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .project-tags span {
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: rgba(148,163,184,0.08);
-        border: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-
-      .cta-wrap {
-        background: linear-gradient(135deg, rgba(36, 73, 215, 0.08), rgba(111, 94, 247, 0.08));
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        padding: 38px 32px;
-        box-shadow: var(--shadow);
-      }
-
-      .cta-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      .cta-inner h3 {
-        font-size: clamp(2.2rem, 4vw, 3rem);
-        margin-bottom: 8px;
-      }
-
-      .cta-inner p {
-        margin: 0;
-        max-width: 560px;
-        color: var(--muted);
-        font-size: 1.04rem;
-      }
-
-      .footer {
-        padding: 16px 0 54px;
-        text-align: center;
-        color: var(--soft);
-        font-size: 0.92rem;
-      }
-
-      @media (max-width: 980px) {
-        .hero-panel,
-        .two-col,
-        .project-grid,
-        .skills-grid {
-          grid-template-columns: 1fr;
+        :root {
+            --header-bg: #1e2530;
+            --header-text: #ffffff;
+            --header-subtext: #a0aec0;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --accent-blue: #3182ce;
+            --accent-teal: #00a896;
+            --timeline-line: #cbd5e0;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            --max-width: 860px;
         }
-      }
 
-      @media (max-width: 768px) {
-        .nav { display: none; }
-        .section-head { grid-template-columns: 1fr; }
-        .meta-grid { grid-template-columns: 1fr; }
-      }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bilberry-header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .avatar-circle {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background-color: var(--accent-teal);
+            border: 3px solid #ffffff;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-meta h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .header-meta p {
+            font-size: 0.95rem;
+            color: var(--header-subtext);
+            margin-top: 0.25rem;
+        }
+
+        .nav-toggle {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .nav-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .main-container {
+            max-width: var(--max-width);
+            margin: 2.5rem auto 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--timeline-line);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-node {
+            position: absolute;
+            left: -2.5rem;
+            top: 1.25rem;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            z-index: 2;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .card-body {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            background-color: #f8fafc;
+            padding: 1.25rem 1.5rem;
+            border-left: 4px solid var(--accent-teal);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin-top: 0.5rem;
+        }
+
+        .modules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        .module-item {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background-color: #fafbfc;
+        }
+
+        .module-item-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .module-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: var(--accent-teal);
+            color: #ffffff;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .module-item-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .module-item-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .submissions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .sub-card {
+            background-color: #fafbfc;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 120px;
+        }
+
+        .sub-week {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+        }
+
+        .sub-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0.25rem 0 0.75rem;
+        }
+
+        .sub-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        footer {
+            background-color: var(--header-bg);
+            color: var(--header-subtext);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .citation-box {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: #a0aec0;
+        }
+
+        .citation-box a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .timeline {
+                padding-left: 0;
+            }
+            .timeline::before, .timeline-node {
+                display: none;
+            }
+            .submissions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <div class="brand" aria-label="Ledi Leticia brand">
-          <div class="brand-mark">L</div>
-          Ledi Leticia
+</head>
+<body>
+
+    <header class="bilberry-header">
+        <div class="header-container">
+            <div class="header-profile">
+                <div class="avatar-circle">
+                    <img src="https://github.com/Koenya/graph-ai-portfolio/blob/main/photo_2026-10-02_05-54-37.jpg?raw=true" alt="Ledi Leticia Profile Avatar">
+                </div>
+                <div class="header-meta">
+                    <h1>Ledi Leticia</h1>
+                    <p>Generative AI for Work & Research — Portfolio</p>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
-
-        <nav class="nav" aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#capabilities">Capabilities</a>
-          <a href="#work">Work</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">☀️</button>
-      </div>
     </header>
 
-    <main>
-      <section class="hero">
-        <div class="container hero-panel">
-          <div>
-            <div class="eyebrow">Product designer • AI UX</div>
-            <h1>I design <span class="highlight">clarity</span> into complex digital products.</h1>
-            <p class="lead">
-              I help startup teams turn ambitious ideas into intuitive, trustworthy product experiences.
-              My focus is UX strategy, interaction design, and AI-powered workflows that feel simple for the end user.
-            </p>
-            <div class="hero-actions">
-              <a class="button primary" href="#work">View work</a>
-              <a class="button secondary" href="#contact">Contact</a>
-            </div>
-          </div>
+    <main class="main-container">
+        <div class="timeline">
 
-          <aside class="profile-card" aria-label="Profile summary">
-            <div class="profile-top">
-              <div class="profile-avatar">L</div>
-              <div class="profile-meta">
-                <strong>Ledi Leticia</strong>
-                <span>Product Designer • AI & UX</span>
-              </div>
+            <!-- About Me Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">👤</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Profile</span>
+                        <h2 class="card-title">About Me</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="about-text">
+                            I work with data to support accurate reporting, planning and decision-making.
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="metric-grid">
-              <div class="metric">
-                <strong>6+</strong>
-                <span>Years of design thinking</span>
-              </div>
-              <div class="metric">
-                <strong>UX</strong>
-                <span>Research-led</span>
-              </div>
-              <div class="metric">
-                <strong>AI</strong>
-                <span>Product experiences</span>
-              </div>
-              <div class="metric">
-                <strong>Build</strong>
-                <span>Fast, thoughtful, scalable</span>
-              </div>
+            <!-- About Course Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">🎓</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Course Info</span>
+                        <h2 class="card-title">About the Course</h2>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Generative AI for Work & Research</strong> is an 8-week live cohort course focused on No-Code AI tools for responsible task automation.</p>
+                        <p style="margin-top: 0.5rem;">Offered by <strong>The GRAPH Courses</strong> at the University of Geneva, Switzerland, combining academic rigor with practical, industry-relevant skills.</p>
+                    </div>
+                </div>
             </div>
-          </aside>
+
+            <!-- Modules List Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">📚</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Curriculum</span>
+                        <h2 class="card-title">Course Modules</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="modules-list">
+
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 1</span>
+                                    <span class="module-item-title">Documents, Presentations & Websites</span>
+                                </div>
+                                <p class="module-item-desc">How LLMs are trained, prompting principles, generating DOCX/PPTX/HTML, simple websites, and AI detection tools.</p>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 2</span>
+                                    <span class="module-item-title">AI-Automated Data Analysis</span>
+                                </div>
+                                <p class="module-item-desc">Analyzing quantitative data responsibly with coding assistants, data agents, and verification strategies for statistical outputs.</p>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 3</span>
+                                    <span class="module-item-title">GenAI for Text Processing & Research</span>
+                                </div>
+                                <p class="module-item-desc">Processing hundreds of documents at once, structured data extraction, AI literature review tools, and qualitative analysis.</p>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 4</span>
+                                    <span class="module-item-title">Custom GPTs and Chatbots</span>
+                                </div>
+                                <p class="module-item-desc">Building custom knowledge base chatbots, context engineering, RAG, custom GPTs, and safe chatbot deployment.</p>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 5</span>
+                                    <span class="module-item-title">AI Tools for Workflow Automation</span>
+                                </div>
+                                <p class="module-item-desc">LLM-powered automations, action/frequency triggers, research digests, keeping humans in the loop, and browser agents.</p>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 6</span>
+                                    <span class="module-item-title">GenAI for Communication & Outreach</span>
+                                </div>
+                                <p class="module-item-desc">Image generation models, producing HTML/SVG infographics, visual research abstracts, and AI video translation/dubbing.</p>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 7</span>
+                                    <span class="module-item-title">Capstone Project & Showcase</span>
+                                </div>
+                                <p class="module-item-desc">Collaborative development of a final AI solution, peer feedback, live project demos, and demonstrating responsible AI practice.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submissions Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">📝</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Submissions</span>
+                        <h2 class="card-title">My Weekly Submissions</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="submissions-grid">
+                            <div class="sub-card">
+                                <span class="sub-week">Week 1</span>
+                                <h3 class="sub-title">Websites, Documents & Prompts</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 2</span>
+                                <h3 class="sub-title">Automated Data Analysis</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 3</span>
+                                <h3 class="sub-title">Text Processing & Literature</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 4</span>
+                                <h3 class="sub-title">Custom GPTs & Chatbots</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 5</span>
+                                <h3 class="sub-title">Workflow Automation</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 6</span>
+                                <h3 class="sub-title">Communication & Graphics</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 7</span>
+                                <h3 class="sub-title">Capstone Showcase</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </section>
-
-      <div class="container content-wrap">
-        <section class="section" id="about">
-          <div class="section-head">
-            <div class="section-index">01</div>
-            <h2>About</h2>
-          </div>
-
-          <div class="two-col">
-            <div class="panel">
-              <p>
-                I design digital experiences that make complex products feel intuitive, helpful, and human.
-                I enjoy working at the intersection of product strategy, user research, and interaction design—especially in AI-first products where clarity and trust matter most.
-              </p>
-              <p>
-                My approach is simple: turn ambiguity into structure, then build thoughtfully crafted experiences that help users move faster with confidence.
-              </p>
-              <div class="quote">“Good product design makes complexity feel effortless.”</div>
-            </div>
-
-            <div class="panel">
-              <div class="meta-grid">
-                <div class="meta-item">
-                  <span class="meta-label">Location</span>
-                  <strong>Remote</strong>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-label">Focus</span>
-                  <strong>AI Product Design</strong>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-label">Specialty</span>
-                  <strong>UX Strategy</strong>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-label">Approach</span>
-                  <strong>Research-first</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="capabilities">
-          <div class="section-head">
-            <div class="section-index">02</div>
-            <h2>Capabilities</h2>
-          </div>
-
-          <div class="skills-grid">
-            <div class="skill-box">
-              <h3>AI & Product Strategy</h3>
-              <div class="tag-row">
-                <span class="tag">AI UX</span>
-                <span class="tag">Product thinking</span>
-                <span class="tag">UX strategy</span>
-                <span class="tag">Roadmapping</span>
-              </div>
-            </div>
-
-            <div class="skill-box">
-              <h3>UX & Interaction Design</h3>
-              <div class="tag-row">
-                <span class="tag">Wireframes</span>
-                <span class="tag">UI systems</span>
-                <span class="tag">Prototyping</span>
-                <span class="tag">Design QA</span>
-              </div>
-            </div>
-
-            <div class="skill-box">
-              <h3>Research & Discovery</h3>
-              <div class="tag-row">
-                <span class="tag">User interviews</span>
-                <span class="tag">Usability testing</span>
-                <span class="tag">Insights</span>
-                <span class="tag">Journey maps</span>
-              </div>
-            </div>
-
-            <div class="skill-box">
-              <h3>Delivery & Systems</h3>
-              <div class="tag-row">
-                <span class="tag">Figma</span>
-                <span class="tag">Design systems</span>
-                <span class="tag">Collaboration</span>
-                <span class="tag">Handoff</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="work">
-          <div class="section-head">
-            <div class="section-index">03</div>
-            <h2>Selected work</h2>
-          </div>
-
-          <div class="project-grid">
-            <article class="project-card">
-              <div class="project-visual">AI</div>
-              <div class="project-body">
-                <h3>AI Workflow Assistant</h3>
-                <p>Designed an AI-powered workspace that helps teams summarize insights, generate next actions, and move from idea to execution faster.</p>
-                <div class="project-tags">
-                  <span>GenAI</span>
-                  <span>UX</span>
-                  <span>Workflow</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-visual">UX</div>
-              <div class="project-body">
-                <h3>Research Dashboard</h3>
-                <p>Created a research and insight platform that turned fragmented data into a clearer, more actionable decision-making system.</p>
-                <div class="project-tags">
-                  <span>Dashboard</span>
-                  <span>Research</span>
-                  <span>Insights</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-visual">WEB</div>
-              <div class="project-body">
-                <h3>Portfolio Design System</h3>
-                <p>Built a premium, editorial visual system that balances storytelling, clarity, and modern startup aesthetics.</p>
-                <div class="project-tags">
-                  <span>Brand</span>
-                  <span>Design</span>
-                  <span>Web</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section" id="contact">
-          <div class="cta-wrap">
-            <div class="cta-inner">
-              <div>
-                <h3>Open to product design opportunities.</h3>
-                <p>
-                  I design experiences for startups and teams building AI-first, user-centric products that need clarity, momentum, and thoughtful execution.
-                </p>
-              </div>
-              <a class="button primary" href="#top">Back to top</a>
-            </div>
-          </div>
-        </section>
-      </div>
     </main>
 
-    <footer class="footer">© 2026 Ledi Leticia</footer>
+    <footer>
+        <p>Ledi Leticia — Generative AI for Work & Research Portfolio</p>
+        <p>The GRAPH Courses • University of Geneva</p>
+        <div class="citation-box">
+            Inspired by <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank" rel="noopener">Bilberry Hugo Theme</a> by Lednerb (Sascha Brendel) • Released under MIT License
+        </div>
+    </footer>
 
-    <script>
-      const toggle = document.querySelector('.theme-toggle');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) document.body.classList.add('dark');
-
-      toggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        toggle.textContent = document.body.classList.contains('dark') ? '🌙' : '☀️';
-      });
-    </script>
-  </body>
+</body>
 </html>
