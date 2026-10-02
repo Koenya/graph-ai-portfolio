@@ -1,364 +1,521 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Leticia Ledi — Generative AI for Work & Research portfolio">
-  <title>Leticia Ledi — Generative AI for Work & Research</title>
-  <style>
-    :root {
-      color-scheme: light dark;
-      --bg: light-dark(#f1edf7, #17151c);
-      --surface: light-dark(#ffffff, #211e26);
-      --surface-2: light-dark(#ece7f3, #2b2731);
-      --text: light-dark(#25202c, #f5f1f8);
-      --muted: light-dark(#746d7c, #bdb6c4);
-      --line: light-dark(#ddd5e6, #3d3745);
-      --accent: light-dark(#7256a3, #bda8df);
-      --accent-2: light-dark(#d27e9b, #e9a9c0);
-      --shadow: 0 20px 60px rgba(66, 48, 86, .12);
-      --radius: 26px;
-      --serif: Georgia, "Times New Roman", serif;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Portfolio | Bilberry Style</title>
+    <style>
+        :root {
+            --header-bg: #1e2530;
+            --header-text: #ffffff;
+            --header-subtext: #a0aec0;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --accent-blue: #3182ce;
+            --accent-teal: #00a896;
+            --timeline-line: #cbd5e0;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            --max-width: 860px;
+        }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      line-height: 1.65;
-    }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    button, a { font: inherit; }
-    a { color: inherit; }
+        .bilberry-header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
 
-    .app-root {
-      min-height: 100vh;
-      background-color: var(--bg);
-      border-radius: 0;
-      overflow-x: hidden;
-    }
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
 
-    .wrap {
-      width: min(1180px, calc(100% - 44px));
-      margin: 0 auto;
-    }
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: color-mix(in srgb, var(--bg) 78%, transparent);
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
-    }
+        .avatar-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background-color: var(--accent-teal);
+            border: 3px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: #ffffff;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
 
-    .nav {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+        .header-meta h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
 
-    .nav::after {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-2);
-      position: absolute;
-      margin-left: 155px;
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-2) 15%, transparent);
-    }
+        .header-meta p {
+            font-size: 0.95rem;
+            color: var(--header-subtext);
+            margin-top: 0.25rem;
+        }
 
-    .brand {
-      text-decoration: none;
-      font-family: var(--serif);
-      font-size: 1.18rem;
-      letter-spacing: -.02em;
-    }
+        .nav-toggle {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 12px;
-      font-size: .88rem;
-      color: var(--muted);
-    }
+        .nav-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 999px;
-    }
+        .main-container {
+            max-width: var(--max-width);
+            margin: 2.5rem auto 4rem;
+            padding: 0 1.5rem;
+        }
 
-    .nav-links a:hover {
-      color: var(--text);
-      background: var(--surface);
-    }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
 
-    .hero {
-      padding: 86px 0 72px;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 48px;
-      align-items: center;
-    }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--timeline-line);
+        }
 
-    .eyebrow {
-      margin: 0 0 15px;
-      color: var(--accent-2);
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
 
-    h1, h2, h3 {
-      font-family: var(--serif);
-      font-weight: 500;
-      line-height: 1.1;
-      margin: 0;
-    }
+        .timeline-node {
+            position: absolute;
+            left: -2.5rem;
+            top: 1.25rem;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            z-index: 2;
+            box-shadow: var(--shadow-sm);
+        }
 
-    h1 {
-      font-size: clamp(3rem, 6.6vw, 5.7rem);
-      letter-spacing: -.055em;
-      max-width: 800px;
-    }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
 
-    .hero-copy {
-      margin-top: 24px;
-      max-width: 640px;
-      font-size: 1.1rem;
-      color: var(--muted);
-    }
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
 
-    .hero-aside {
-      padding: 34px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      transform: rotate(1deg);
-    }
+        .card-header {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
 
-    .hero-aside strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
+        .card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
 
-    .hero-aside p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .94rem;
-    }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
 
-    .hero-aside p + p { margin-top: 6px; }
+        .card-body {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
 
-    section {
-      padding: 76px 0;
-      border-top: 1px solid var(--line);
-    }
+        .about-text {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            background-color: #f8fafc;
+            padding: 1.25rem 1.5rem;
+            border-left: 4px solid var(--accent-teal);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin-top: 0.5rem;
+        }
 
-    .section-head {
-      display: grid;
-      grid-template-columns: .34fr 1fr;
-      gap: 36px;
-      margin-bottom: 44px;
-      align-items: start;
-    }
+        .modules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
 
-    .section-number {
-      color: var(--accent);
-      font-size: .78rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      padding-top: 8px;
-    }
+        .module-item {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background-color: #fafbfc;
+        }
 
-    h2 {
-      font-size: clamp(2.1rem, 4vw, 3.3rem);
-      letter-spacing: -.03em;
-    }
+        .module-item-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.35rem;
+        }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 34px;
-    }
+        .module-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: var(--accent-teal);
+            color: #ffffff;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
 
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 32px;
-      box-shadow: var(--shadow);
-    }
+        .module-item-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
 
-    .panel p { margin: 0 0 16px; }
-    .panel p:last-child { margin-bottom: 0; }
+        .module-item-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
 
-    .meta-grid {
-      display: grid;
-      gap: 18px;
-    }
+        .submissions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
 
-    .meta-item {
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--line);
-    }
+        .sub-card {
+            background-color: #fafbfc;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 120px;
+        }
 
-    .meta-item:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
+        .sub-week {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+        }
 
-    .meta-label {
-      display: block;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-size: .68rem;
-      margin-bottom: 5px;
-      font-weight: 700;
-    }
+        .sub-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0.25rem 0 0.75rem;
+        }
 
-    .course-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 28px;
-      align-items: stretch;
-    }
+        .sub-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
 
-    .course-intro {
-      background: linear-gradient(145deg, var(--accent), var(--accent-2));
-      color: #fff;
-      border-radius: var(--radius);
-      padding: 38px;
-      box-shadow: var(--shadow);
-    }
+        footer {
+            background-color: var(--header-bg);
+            color: var(--header-subtext);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
 
-    .course-intro .eyebrow { color: rgba(255,255,255,.82); }
-    .course-intro h3 { font-size: 2rem; margin-bottom: 18px; }
-    .course-intro p { color: rgba(255,255,255,.84); }
+        footer p {
+            margin-bottom: 0.5rem;
+        }
 
-    .module-list {
-      display: grid;
-      gap: 12px;
-    }
+        .citation-box {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: #a0aec0;
+        }
 
-    .module {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 74px 1fr;
-      gap: 12px;
-      align-items: start;
-      box-shadow: 0 8px 28px rgba(66, 48, 86, .05);
-    }
+        .citation-box a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
 
-    .module-index {
-      color: var(--accent);
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding-top: 3px;
-    }
+        @media (max-width: 640px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .timeline {
+                padding-left: 0;
+            }
+            .timeline::before, .timeline-node {
+                display: none;
+            }
+            .submissions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
 
-    .module h3 { font-size: 1.18rem; }
-    .module p { color: var(--muted); font-size: .9rem; margin: 4px 0 0; }
+    <header class="bilberry-header">
+        <div class="header-container">
+            <div class="header-profile">
+                <div class="avatar-circle">AI</div>
+                <div class="header-meta">
+                    <h1>Generative AI for Work & Research</h1>
+                    <p>Portfolio & Course Submissions</p>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
 
-    .weeks {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
+    <main class="main-container">
+        <div class="timeline">
 
-    .week-card {
-      position: relative;
-      min-height: 210px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 24px;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
+            <!-- About Me Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">👤</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Profile</span>
+                        <h2 class="card-title">About Me</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="about-text">
+                            I work with data to support accurate reporting, planning and decision-making.
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    .week-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-    }
+            <!-- About Course Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">🎓</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Course Info</span>
+                        <h2 class="card-title">About the Course</h2>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Generative AI for Work & Research</strong> is an 8-week live cohort course focused on No-Code AI tools for responsible task automation.</p>
+                        <p style="margin-top: 0.5rem;">Offered by <strong>The GRAPH Courses</strong> at the University of Geneva, Switzerland, combining academic rigor with practical, industry-relevant skills.</p>
+                    </div>
+                </div>
+            </div>
 
-    .week-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
+            <!-- Modules List Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">📚</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Curriculum</span>
+                        <h2 class="card-title">Course Modules</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="modules-list">
 
-    .week {
-      color: var(--accent-2);
-      font-size: .72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-    }
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 1</span>
+                                    <span class="module-item-title">Documents, Presentations & Websites</span>
+                                </div>
+                                <p class="module-item-desc">How LLMs are trained, prompting principles, generating DOCX/PPTX/HTML, simple websites, and AI detection tools.</p>
+                            </div>
 
-    .status {
-      font-size: .7rem;
-      color: var(--muted);
-      padding: 5px 8px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-    }
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 2</span>
+                                    <span class="module-item-title">AI-Automated Data Analysis</span>
+                                </div>
+                                <p class="module-item-desc">Analyzing quantitative data responsibly with coding assistants, data agents, and verification strategies for statistical outputs.</p>
+                            </div>
 
-    .week-card h3 { font-size: 1.42rem; margin-bottom: 8px; }
-    .week-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 3</span>
+                                    <span class="module-item-title">GenAI for Text Processing & Research</span>
+                                </div>
+                                <p class="module-item-desc">Processing hundreds of documents at once, structured data extraction, AI literature review tools, and qualitative analysis.</p>
+                            </div>
 
-    .submission {
-      display: inline-flex;
-      margin-top: 18px;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: .82rem;
-      font-weight: 700;
-      letter-spacing: .01em;
-    }
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 4</span>
+                                    <span class="module-item-title">Custom GPTs and Chatbots</span>
+                                </div>
+                                <p class="module-item-desc">Building custom knowledge base chatbots, context engineering, RAG, custom GPTs, and safe chatbot deployment.</p>
+                            </div>
 
-    .submission::after { content: " →"; }
-    .submission:hover { text-decoration: underline; }
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 5</span>
+                                    <span class="module-item-title">AI Tools for Workflow Automation</span>
+                                </div>
+                                <p class="module-item-desc">LLM-powered automations, action/frequency triggers, research digests, keeping humans in the loop, and browser agents.</p>
+                            </div>
 
-    .contact {
-      display: flex;
-      justify-content: space-between;
-      gap: 28px;
-      align-items: end;
-      background: var(--surface-2);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      padding: 34px;
-    }
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 6</span>
+                                    <span class="module-item-title">GenAI for Communication & Outreach</span>
+                                </div>
+                                <p class="module-item-desc">Image generation models, producing HTML/SVG infographics, visual research abstracts, and AI video translation/dubbing.</p>
+                            </div>
 
-    .contact p {
-      margin: 16px 0 0;
-      color: var(--muted);
-      max-width: 620px;
-    }
+                            <div class="module-item">
+                                <div class="module-item-header">
+                                    <span class="module-badge">Module 7</span>
+                                    <span class="module-item-title">Capstone Project & Showcase</span>
+                                </div>
+                                <p class="module-item-desc">Collaborative development of a final AI solution, peer feedback, live project demos, and demonstrating responsible AI practice.</p>
+                            </div>
 
-    .contact-link {
-      white-space: nowrap;
-      text-decoration: none;
-      border-bottom:
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submissions Card -->
+            <div class="timeline-item">
+                <div class="timeline-node">📝</div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">Submissions</span>
+                        <h2 class="card-title">My Weekly Submissions</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="submissions-grid">
+                            <div class="sub-card">
+                                <span class="sub-week">Week 1</span>
+                                <h3 class="sub-title">Websites, Documents & Prompts</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 2</span>
+                                <h3 class="sub-title">Automated Data Analysis</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 3</span>
+                                <h3 class="sub-title">Text Processing & Literature</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 4</span>
+                                <h3 class="sub-title">Custom GPTs & Chatbots</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 5</span>
+                                <h3 class="sub-title">Workflow Automation</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 6</span>
+                                <h3 class="sub-title">Communication & Graphics</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                            <div class="sub-card">
+                                <span class="sub-week">Week 7</span>
+                                <h3 class="sub-title">Capstone Showcase</h3>
+                                <span class="sub-status">Placeholder — Link to be added</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Generative AI for Work & Research — Portfolio</p>
+        <p>The GRAPH Courses • University of Geneva</p>
+        <div class="citation-box">
+            Inspired by <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank" rel="noopener">Bilberry Hugo Theme</a> by Lednerb (Sascha Brendel) • Released under MIT License
+        </div>
+    </footer>
+
+</body>
+</html>
