@@ -4,25 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generative AI Portfolio | Bilberry Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --header-bg: #1e2530;
+            --header-bg: #1a1f2e;
             --header-text: #ffffff;
-            --header-subtext: #a0aec0;
-            --bg-color: #f4f6f8;
+            --header-subtext: #9ca3af;
+            --bg-color: #f9fafb;
             --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-            --text-primary: #2d3748;
-            --text-secondary: #4a5568;
-            --text-muted: #718096;
-            --accent-blue: #3182ce;
-            --accent-teal: #00a896;
-            --timeline-line: #cbd5e0;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-            --radius: 8px;
-            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            --max-width: 860px;
+            --border-color: #e5e7eb;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --accent-blue: #2563eb;
+            --accent-teal: #059669;
+            --accent-purple: #7c3aed;
+            --timeline-line: #d1d5db;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 10px;
+            --font-serif: 'Merriweather', serif;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --max-width: 900px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -31,20 +38,38 @@
             padding: 0;
         }
 
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, var(--bg-color) 0%, #f3f4f6 100%);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header Styles */
         .bilberry-header {
-            background-color: var(--header-bg);
+            background: linear-gradient(135deg, var(--header-bg) 0%, #111827 100%);
             color: var(--header-text);
-            padding: 2.5rem 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 3rem 1.5rem;
+            box-shadow: var(--shadow-lg);
             position: relative;
+            overflow: hidden;
+        }
+
+        .bilberry-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         .header-container {
@@ -53,279 +78,444 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1.5rem;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .header-profile {
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            gap: 1.5rem;
+            flex: 1;
         }
 
         .avatar-circle {
-            width: 72px;
-            height: 72px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
-            background-color: var(--accent-teal);
-            border: 3px solid #ffffff;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            border: 4px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
+            font-size: 2rem;
             color: #ffffff;
             font-weight: 700;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
             flex-shrink: 0;
+            font-family: var(--font-serif);
         }
 
         .header-meta h1 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #ffffff;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
+            letter-spacing: -0.015em;
+            line-height: 1.3;
+            font-family: var(--font-serif);
+            margin-bottom: 0.4rem;
         }
 
         .header-meta p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--header-subtext);
-            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        .header-meta p::before {
+            content: '✦ ';
+            color: var(--accent-teal);
+            margin-right: 0.5rem;
         }
 
         .nav-toggle {
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: #ffffff;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 0.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
+            border-radius: 8px;
+            transition: var(--transition);
         }
 
         .nav-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-meta h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Main Container */
         .main-container {
             max-width: var(--max-width);
-            margin: 2.5rem auto 4rem;
+            margin: 3rem auto 4rem;
             padding: 0 1.5rem;
         }
 
+        /* Timeline Styles */
         .timeline {
             position: relative;
-            padding-left: 2.5rem;
+            padding-left: 3.5rem;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 1rem;
+            left: 1.2rem;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background-color: var(--timeline-line);
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-teal) 50%, var(--accent-purple) 100%);
+            border-radius: 999px;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .timeline-node {
             position: absolute;
-            left: -2.5rem;
-            top: 1.25rem;
-            transform: translateX(-50%);
-            width: 32px;
-            height: 32px;
+            left: -3rem;
+            top: 1.5rem;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background-color: var(--card-bg);
-            border: 2px solid var(--accent-blue);
+            border: 3px solid var(--accent-blue);
             color: var(--accent-blue);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
+            font-size: 1.2rem;
             z-index: 2;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 0 0 8px var(--bg-color), var(--shadow-md);
+            transition: var(--transition);
         }
 
+        .timeline-item:hover .timeline-node {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 8px var(--bg-color), 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Card Styles */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 2.5rem;
             box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
+            transition: var(--transition);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-teal));
         }
 
         .card:hover {
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-blue);
+            transform: translateY(-4px);
         }
 
         .card-header {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
         }
 
         .card-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             font-weight: 700;
             color: var(--accent-blue);
-            margin-bottom: 0.25rem;
-            display: block;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.35rem 0.8rem;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 999px;
         }
 
         .card-title {
-            font-size: 1.4rem;
+            font-size: 1.65rem;
             font-weight: 700;
             color: var(--text-primary);
+            font-family: var(--font-serif);
+            letter-spacing: -0.02em;
         }
 
         .card-body {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
+        .card-body p {
+            margin: 0 0 1rem 0;
+        }
+
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* About Text */
         .about-text {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 500;
             color: var(--text-primary);
-            background-color: #f8fafc;
-            padding: 1.25rem 1.5rem;
-            border-left: 4px solid var(--accent-teal);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
+            padding: 1.75rem 2rem;
+            border-left: 5px solid var(--accent-teal);
             border-radius: 0 var(--radius) var(--radius) 0;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
+            line-height: 1.8;
         }
 
+        /* Modules List */
         .modules-list {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
-            margin-top: 1.25rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .module-item {
-            padding: 1rem;
-            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
             border-radius: var(--radius);
-            background-color: #fafbfc;
+            background: linear-gradient(135deg, #fafbfc 0%, #f3f4f6 100%);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .module-item:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
         }
 
         .module-item-header {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.35rem;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .module-badge {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            background-color: var(--accent-teal);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
             color: #ffffff;
-            padding: 0.15rem 0.5rem;
-            border-radius: 12px;
+            padding: 0.4rem 0.75rem;
+            border-radius: 999px;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
         }
 
         .module-item-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-primary);
+            font-family: var(--font-serif);
         }
 
         .module-item-desc {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
+            line-height: 1.6;
         }
 
+        /* Submissions Grid */
         .submissions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-top: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .sub-card {
-            background-color: #fafbfc;
-            border: 1px solid var(--border-color);
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border: 2px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 1.25rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 120px;
+            min-height: 160px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .sub-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-6px);
+        }
+
+        .sub-card:hover::before {
+            transform: scaleX(1);
         }
 
         .sub-week {
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 0.7rem;
+            font-weight: 800;
             color: var(--accent-blue);
             text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
         }
 
         .sub-title {
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: 1.05rem;
+            font-weight: 700;
             color: var(--text-primary);
+            font-family: var(--font-serif);
             margin: 0.25rem 0 0.75rem;
+            line-height: 1.4;
         }
 
         .sub-status {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             font-style: italic;
         }
 
+        .sub-status.completed {
+            color: var(--accent-teal);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* Footer */
         footer {
-            background-color: var(--header-bg);
+            background: linear-gradient(135deg, var(--header-bg) 0%, #111827 100%);
             color: var(--header-subtext);
-            padding: 2.5rem 1.5rem;
+            padding: 3rem 1.5rem;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
         }
 
         footer p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .citation-box {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.8rem;
-            color: #a0aec0;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.85rem;
+            color: #9ca3af;
         }
 
         .citation-box a {
             color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .citation-box a:hover {
             text-decoration: underline;
         }
 
-        @media (max-width: 640px) {
-            .header-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 2rem auto 3rem;
             }
+
             .timeline {
                 padding-left: 0;
             }
-            .timeline::before, .timeline-node {
+
+            .timeline::before,
+            .timeline-node {
                 display: none;
             }
+
+            .card {
+                padding: 1.75rem;
+            }
+
             .submissions-grid {
                 grid-template-columns: 1fr;
             }
+
+            .card-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-accent {
+            color: var(--accent-blue);
+        }
+
+        .text-teal {
+            color: var(--accent-teal);
         }
     </style>
 </head>
@@ -334,14 +524,14 @@
     <header class="bilberry-header">
         <div class="header-container">
             <div class="header-profile">
-                <div class="avatar-circle">AI</div>
+                <div class="avatar-circle">✦</div>
                 <div class="header-meta">
-                    <h1>Generative AI for Work & Research</h1>
-                    <p>Portfolio & Course Submissions</p>
+                    <h1>Generative AI Portfolio</h1>
+                    <p>Work & Research Showcase</p>
                 </div>
             </div>
-            <button class="nav-toggle" aria-label="Toggle Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button class="nav-toggle" aria-label="Toggle Menu" title="Menu">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -363,7 +553,7 @@
                     </div>
                     <div class="card-body">
                         <div class="about-text">
-                            I work with data to support accurate reporting, planning and decision-making.
+                            I work with data to support accurate reporting, planning and decision-making. Passionate about AI, research workflows, and building tools that empower creative problem-solving.
                         </div>
                     </div>
                 </div>
@@ -374,12 +564,12 @@
                 <div class="timeline-node">🎓</div>
                 <div class="card">
                     <div class="card-header">
-                        <span class="card-tag">Course Info</span>
-                        <h2 class="card-title">About the Course</h2>
+                        <span class="card-tag">Course</span>
+                        <h2 class="card-title">About the Program</h2>
                     </div>
                     <div class="card-body">
-                        <p><strong>Generative AI for Work & Research</strong> is an 8-week live cohort course focused on No-Code AI tools for responsible task automation.</p>
-                        <p style="margin-top: 0.5rem;">Offered by <strong>The GRAPH Courses</strong> at the University of Geneva, Switzerland, combining academic rigor with practical, industry-relevant skills.</p>
+                        <p><strong>Generative AI for Work & Research</strong> is an intensive 8-week live cohort course focused on <span class="text-teal">No-Code AI tools</span> for responsible automation and research enhancement.</p>
+                        <p>Offered by <strong>The GRAPH Courses</strong> at the University of Geneva, Switzerland — combining academic rigor with practical, industry-relevant application of cutting-edge AI technologies.</p>
                     </div>
                 </div>
             </div>
@@ -397,58 +587,58 @@
 
                             <div class="module-item">
                                 <div class="module-item-header">
-                                    <span class="module-badge">Module 1</span>
+                                    <span class="module-badge">W1</span>
                                     <span class="module-item-title">Documents, Presentations & Websites</span>
                                 </div>
-                                <p class="module-item-desc">How LLMs are trained, prompting principles, generating DOCX/PPTX/HTML, simple websites, and AI detection tools.</p>
+                                <p class="module-item-desc">How LLMs are trained • Prompting principles • Generating DOCX/PPTX/HTML • Building simple websites • AI detection tools</p>
                             </div>
 
                             <div class="module-item">
                                 <div class="module-item-header">
-                                    <span class="module-badge">Module 2</span>
+                                    <span class="module-badge">W2</span>
                                     <span class="module-item-title">AI-Automated Data Analysis</span>
                                 </div>
-                                <p class="module-item-desc">Analyzing quantitative data responsibly with coding assistants, data agents, and verification strategies for statistical outputs.</p>
+                                <p class="module-item-desc">Analyzing quantitative data responsibly • Coding assistants • Data agents • Verification strategies for statistical outputs</p>
                             </div>
 
                             <div class="module-item">
                                 <div class="module-item-header">
-                                    <span class="module-badge">Module 3</span>
+                                    <span class="module-badge">W3</span>
                                     <span class="module-item-title">GenAI for Text Processing & Research</span>
                                 </div>
-                                <p class="module-item-desc">Processing hundreds of documents at once, structured data extraction, AI literature review tools, and qualitative analysis.</p>
+                                <p class="module-item-desc">Processing hundreds of documents • Structured data extraction • AI literature review tools • Qualitative analysis at scale</p>
                             </div>
 
                             <div class="module-item">
                                 <div class="module-item-header">
-                                    <span class="module-badge">Module 4</span>
+                                    <span class="module-badge">W4</span>
                                     <span class="module-item-title">Custom GPTs and Chatbots</span>
                                 </div>
-                                <p class="module-item-desc">Building custom knowledge base chatbots, context engineering, RAG, custom GPTs, and safe chatbot deployment.</p>
+                                <p class="module-item-desc">Building custom knowledge base chatbots • Context engineering • RAG systems • Custom GPTs • Safe chatbot deployment</p>
                             </div>
 
                             <div class="module-item">
                                 <div class="module-item-header">
-                                    <span class="module-badge">Module 5</span>
+                                    <span class="module-badge">W5</span>
                                     <span class="module-item-title">AI Tools for Workflow Automation</span>
                                 </div>
-                                <p class="module-item-desc">LLM-powered automations, action/frequency triggers, research digests, keeping humans in the loop, and browser agents.</p>
+                                <p class="module-item-desc">LLM-powered automations • Action & frequency triggers • Research digests • Keeping humans in the loop • Browser agents</p>
                             </div>
 
                             <div class="module-item">
                                 <div class="module-item-header">
-                                    <span class="module-badge">Module 6</span>
+                                    <span class="module-badge">W6</span>
                                     <span class="module-item-title">GenAI for Communication & Outreach</span>
                                 </div>
-                                <p class="module-item-desc">Image generation models, producing HTML/SVG infographics, visual research abstracts, and AI video translation/dubbing.</p>
+                                <p class="module-item-desc">Image generation models • HTML/SVG infographics • Visual research abstracts • AI video translation & dubbing</p>
                             </div>
 
                             <div class="module-item">
                                 <div class="module-item-header">
-                                    <span class="module-badge">Module 7</span>
+                                    <span class="module-badge">W7</span>
                                     <span class="module-item-title">Capstone Project & Showcase</span>
                                 </div>
-                                <p class="module-item-desc">Collaborative development of a final AI solution, peer feedback, live project demos, and demonstrating responsible AI practice.</p>
+                                <p class="module-item-desc">Collaborative AI solution development • Peer feedback • Live project demos • Demonstrating responsible AI practice</p>
                             </div>
 
                         </div>
@@ -462,44 +652,58 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="card-tag">Submissions</span>
-                        <h2 class="card-title">My Weekly Submissions</h2>
+                        <h2 class="card-title">Weekly Submissions</h2>
                     </div>
                     <div class="card-body">
                         <div class="submissions-grid">
                             <div class="sub-card">
-                                <span class="sub-week">Week 1</span>
-                                <h3 class="sub-title">Websites, Documents & Prompts</h3>
-                                <span class="sub-status">Placeholder — Link to be added</span>
+                                <div>
+                                    <span class="sub-week">Week 1</span>
+                                    <h3 class="sub-title">Websites & Documents</h3>
+                                </div>
+                                <span class="sub-status">✦ Coming soon</span>
                             </div>
                             <div class="sub-card">
-                                <span class="sub-week">Week 2</span>
-                                <h3 class="sub-title">Automated Data Analysis</h3>
-                                <span class="sub-status">Placeholder — Link to be added</span>
+                                <div>
+                                    <span class="sub-week">Week 2</span>
+                                    <h3 class="sub-title">Data Analysis</h3>
+                                </div>
+                                <span class="sub-status">✦ Coming soon</span>
                             </div>
                             <div class="sub-card">
-                                <span class="sub-week">Week 3</span>
-                                <h3 class="sub-title">Text Processing & Literature</h3>
-                                <span class="sub-status">Placeholder — Link to be added</span>
+                                <div>
+                                    <span class="sub-week">Week 3</span>
+                                    <h3 class="sub-title">Text Processing</h3>
+                                </div>
+                                <span class="sub-status">✦ Coming soon</span>
                             </div>
                             <div class="sub-card">
-                                <span class="sub-week">Week 4</span>
-                                <h3 class="sub-title">Custom GPTs & Chatbots</h3>
-                                <span class="sub-status">Placeholder — Link to be added</span>
+                                <div>
+                                    <span class="sub-week">Week 4</span>
+                                    <h3 class="sub-title">Custom GPTs</h3>
+                                </div>
+                                <span class="sub-status">✦ Coming soon</span>
                             </div>
                             <div class="sub-card">
-                                <span class="sub-week">Week 5</span>
-                                <h3 class="sub-title">Workflow Automation</h3>
-                                <span class="sub-status">Placeholder — Link to be added</span>
+                                <div>
+                                    <span class="sub-week">Week 5</span>
+                                    <h3 class="sub-title">Automation</h3>
+                                </div>
+                                <span class="sub-status">✦ Coming soon</span>
                             </div>
                             <div class="sub-card">
-                                <span class="sub-week">Week 6</span>
-                                <h3 class="sub-title">Communication & Graphics</h3>
-                                <span class="sub-status">Placeholder — Link to be added</span>
+                                <div>
+                                    <span class="sub-week">Week 6</span>
+                                    <h3 class="sub-title">Communication</h3>
+                                </div>
+                                <span class="sub-status">✦ Coming soon</span>
                             </div>
                             <div class="sub-card">
-                                <span class="sub-week">Week 7</span>
-                                <h3 class="sub-title">Capstone Showcase</h3>
-                                <span class="sub-status">Placeholder — Link to be added</span>
+                                <div>
+                                    <span class="sub-week">Week 7</span>
+                                    <h3 class="sub-title">Capstone</h3>
+                                </div>
+                                <span class="sub-status">✦ Coming soon</span>
                             </div>
                         </div>
                     </div>
@@ -510,10 +714,10 @@
     </main>
 
     <footer>
-        <p>Generative AI for Work & Research — Portfolio</p>
-        <p>The GRAPH Courses • University of Geneva</p>
+        <p><strong>Generative AI for Work & Research</strong></p>
+        <p>The GRAPH Courses • University of Geneva • 2026</p>
         <div class="citation-box">
-            Inspired by <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank" rel="noopener">Bilberry Hugo Theme</a> by Lednerb (Sascha Brendel) • Released under MIT License
+            Design inspired by <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank" rel="noopener">Bilberry Hugo Theme</a> by Lednerb • Built for GitHub Pages
         </div>
     </footer>
 
