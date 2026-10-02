@@ -297,6 +297,15 @@
       color: white;
       background: linear-gradient(135deg, var(--blue), var(--purple), var(--teal));
       box-shadow: 0 20px 30px rgba(37,99,235,0.25);
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .profile-meta strong {
@@ -721,7 +730,9 @@
 
           <aside class="profile-card" aria-label="Profile summary">
             <div class="profile-top">
-              <div class="profile-avatar">L</div>
+              <div class="profile-avatar">
+                <img src="https://github.com/Koenya/graph-ai-portfolio/blob/main/photo_2026-10-02_05-54-37.jpg?raw=true" alt="Ledi Leticia" />
+              </div>
               <div class="profile-meta">
                 <strong>Ledi Leticia</strong>
                 <span>AI Research & Creative Technologist</span>
