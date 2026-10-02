@@ -269,6 +269,11 @@
       border-color: transparent;
       box-shadow: 0 16px 30px rgba(104, 85, 224, 0.22);
     }
+
+    .button.primary:hover {
+      box-shadow: 0 20px 40px rgba(104, 85, 224, 0.32);
+    }
+
     .button.secondary {
       background: rgba(255,255,255,0.4);
       color: var(--text);
@@ -454,6 +459,13 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow-soft);
       padding: 22px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill-box:hover {
+      transform: translateY(-3px);
+      border-color: rgba(37,99,235,0.25);
+      box-shadow: 0 12px 32px rgba(37,99,235,0.12);
     }
 
     .skill-box h3 {
@@ -494,9 +506,9 @@
     }
 
     .project-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: rgba(37,99,235,0.28);
-      box-shadow: var(--shadow);
+      box-shadow: 0 16px 48px rgba(37,99,235,0.15);
     }
 
     .project-visual {
@@ -618,45 +630,106 @@
       display: block;
     }
 
+    .contact-wrapper {
+      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 48px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(124,58,237,0.15), transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
     .contact-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 48px;
       align-items: start;
+      position: relative;
+      z-index: 1;
     }
 
     .contact-info {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 28px;
+      justify-content: center;
     }
 
     .contact-info h3 {
       font-size: clamp(2rem, 3vw, 2.7rem);
       margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .contact-info p {
       margin: 0;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(37,99,235,0.1);
+      border: 1px solid rgba(37,99,235,0.2);
+      color: var(--text);
+      transition: all 0.2s ease;
+      font-size: 1.2rem;
+    }
+
+    .social-link:hover {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-2px);
     }
 
     .contact-form {
-      background: var(--panel);
+      background: var(--panel-strong);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      padding: 28px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
+      padding: 32px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
+    }
+
+    body.dark .contact-form {
+      background: rgba(17,24,39,0.95);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .form-group.inline {
@@ -672,59 +745,73 @@
     .field {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       margin: 0;
     }
 
     .field label {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
     }
 
     .field input,
     .field textarea {
       width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.65);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.7);
       color: var(--text);
-      padding: 12px 14px;
-      min-height: 46px;
+      padding: 14px 16px;
+      min-height: 48px;
       outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.3s ease;
       font-size: 0.95rem;
     }
 
     .field textarea {
-      min-height: 140px;
+      min-height: 150px;
       resize: vertical;
       font-family: 'Inter', sans-serif;
     }
 
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
     .field input:focus,
     .field textarea:focus {
-      border-color: rgba(37,99,235,0.48);
-      box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+      background: rgba(255,255,255,0.95);
     }
 
     .field input[aria-invalid="true"],
     .field textarea[aria-invalid="true"] {
       border-color: var(--error);
+      background: rgba(220,38,38,0.04);
     }
 
     body.dark .field input,
     body.dark .field textarea {
-      background: rgba(15,23,42,0.65);
+      background: rgba(30,41,59,0.7);
+    }
+
+    body.dark .field input:focus,
+    body.dark .field textarea:focus {
+      background: rgba(30,41,59,0.95);
     }
 
     .field-error {
       display: none;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--error);
-      margin-top: -4px;
+      margin-top: -6px;
+      font-weight: 500;
     }
 
     .field-error[data-fs-error] {
@@ -733,12 +820,12 @@
 
     [data-fs-success] {
       display: none;
-      padding: 14px 16px;
-      border-radius: 12px;
+      padding: 16px 18px;
+      border-radius: 14px;
       background: rgba(22,163,74,0.12);
-      border: 1px solid rgba(22,163,74,0.3);
+      border: 1.5px solid rgba(22,163,74,0.3);
       color: var(--success);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 600;
     }
 
@@ -747,8 +834,16 @@
     }
 
     .form-submit {
-      margin-top: 8px;
+      margin-top: 12px;
       width: 100%;
+      min-height: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .form-submit:hover:not(:disabled) {
+      box-shadow: 0 20px 40px rgba(104, 85, 224, 0.35);
     }
 
     .footer {
@@ -797,9 +892,13 @@
         align-items: start;
       }
 
+      .contact-wrapper {
+        padding: 32px;
+      }
+
       .contact-section {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 32px;
       }
 
       .form-group.inline {
@@ -1086,46 +1185,60 @@
           <h2>Contact</h2>
         </div>
 
-        <div class="contact-section">
-          <div class="contact-info">
-            <h3>Let's build something meaningful.</h3>
-            <p>Open to AI product design, creative research, and thoughtful digital experiences. Get in touch and let's explore how we can collaborate.</p>
+        <div class="contact-wrapper">
+          <div class="contact-section">
+            <div class="contact-info">
+              <h3>Let's build something meaningful.</h3>
+              <p>Open to AI product design, creative research, and thoughtful digital experiences. I'm excited to collaborate on projects that combine strategy, innovation, and human-centered thinking.</p>
+              
+              <div class="social-links">
+                <a href="#" class="social-link" title="LinkedIn" aria-label="LinkedIn">
+                  <span>🔗</span>
+                </a>
+                <a href="#" class="social-link" title="GitHub" aria-label="GitHub">
+                  <span>◇</span>
+                </a>
+                <a href="#" class="social-link" title="Twitter" aria-label="Twitter">
+                  <span>𝕏</span>
+                </a>
+              </div>
+            </div>
+
+            <form id="contactForm" class="contact-form">
+              <div data-fs-success>✓ Message sent! I'll get back to you within 24 hours.</div>
+
+              <div class="form-group inline">
+                <div class="field">
+                  <label for="name">Your name</label>
+                  <input type="text" id="name" name="name" placeholder="Jane Doe" data-fs-field required />
+                  <span class="field-error" data-fs-error="name"></span>
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="jane@example.com" data-fs-field required />
+                  <span class="field-error" data-fs-error="email"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="field">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" placeholder="Project inquiry, collaboration, etc." data-fs-field required />
+                  <span class="field-error" data-fs-error="subject"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Tell me more about your project or what you have in mind..." data-fs-field required></textarea>
+                  <span class="field-error" data-fs-error="message"></span>
+                </div>
+              </div>
+
+              <button type="submit" class="button primary form-submit" data-fs-submit-btn>Send message</button>
+            </form>
           </div>
-
-          <div data-fs-success>✓ Message sent! I'll get back to you soon.</div>
-
-          <form id="contactForm" class="contact-form">
-            <div class="form-group inline">
-              <div class="field">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" data-fs-field required />
-                <span class="field-error" data-fs-error="name"></span>
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" data-fs-field required />
-                <span class="field-error" data-fs-error="email"></span>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="field">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="What's this about?" data-fs-field required />
-                <span class="field-error" data-fs-error="subject"></span>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Tell me about your project..." data-fs-field required></textarea>
-                <span class="field-error" data-fs-error="message"></span>
-              </div>
-            </div>
-
-            <button type="submit" class="button primary form-submit" data-fs-submit-btn>Send message</button>
-          </form>
         </div>
       </section>
     </div>
